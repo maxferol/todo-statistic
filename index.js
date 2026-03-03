@@ -20,6 +20,7 @@ function processCommand(command) {
             for (let i = 0; i < res.length; i++) {
                 console.log(res[i])
             }
+            break;
         case 'important':
             for (let i = 0; i < res.length; i++) {
                 if (res[i].includes('!')){
@@ -30,9 +31,11 @@ function processCommand(command) {
         case command.includes(`user`):
             for (let i = 0; i < res.length; i++){
                 if (command.slice(5) === res[i].slice(8, res[i].indexOf(';')).toLowerCase()){
-                    console.log(res[i].slice(res[i].lastIndexOf(';')))
+                    console.log(res[i].slice(res[i].lastIndexOf(';') + 1))
                 }
             }
+            break;
+
         default:
             console.log('wrong command');
             break;
