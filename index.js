@@ -4,9 +4,9 @@ const {readLine} = require('./console');
 
 const files = getFiles();
 
-let todoComments = [];
+let res = [];
 getAllTodoComments();
-for (let comment of todoComments){
+for (let comment of res){
     console.log(comment);
 }
 
@@ -26,7 +26,7 @@ function getTodoComments(file) {
     for (let line of lines){
         let endIndex = line.indexOf('\n');
         line = line.substring(0, endIndex);
-        todoComments.push(line);
+        res.push(line);
     }
 }
 
@@ -36,9 +36,9 @@ function getAllTodoComments() {
     }
 }
 
-
 function processCommand(command) {
-    switch (command) {
+    let [command_name, command_date] = command.split(' ')
+    switch (command_name) {
         case 'exit':
             process.exit(0);
             break;
@@ -54,9 +54,9 @@ function processCommand(command) {
                 }
             }
             break;
-        case command.includes(`user`):
+        case 'user':
             for (let i = 0; i < res.length; i++){
-                if (command.slice(5) === res[i].slice(8, res[i].indexOf(';')).toLowerCase()){
+                if (command_date === res[i].slice(5, res[i].indexOf(';')).toLowerCase()){
                     console.log(res[i].slice(res[i].lastIndexOf(';') + 1))
                 }
             }
@@ -65,6 +65,17 @@ function processCommand(command) {
         default:
             console.log('wrong command');
             break;
+    }
+}
+
+
+function processSort(sortBy){
+    switch (sortby) {
+        case "importance":
+
+        case "user":
+
+        case "date":
     }
 }
 
