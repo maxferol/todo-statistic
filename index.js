@@ -42,6 +42,26 @@ function processCommand(command) {
         case 'exit':
             process.exit(0);
             break;
+        case 'show':
+            for (let i = 0; i < res.length; i++) {
+                console.log(res[i])
+            }
+            break;
+        case 'important':
+            for (let i = 0; i < res.length; i++) {
+                if (res[i].includes('!')){
+                    console.log(res[i]);
+                }
+            }
+            break;
+        case command.includes(`user`):
+            for (let i = 0; i < res.length; i++){
+                if (command.slice(5) === res[i].slice(8, res[i].indexOf(';')).toLowerCase()){
+                    console.log(res[i].slice(res[i].lastIndexOf(';') + 1))
+                }
+            }
+            break;
+
         default:
             console.log('wrong command');
             break;
